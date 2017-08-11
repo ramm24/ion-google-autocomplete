@@ -13,10 +13,10 @@ angular.module('ion-google-autocomplete')
     searchAddress: function(input, countryCode) {
 
       var dfd = $q.defer();
-
+      var splitCountry = _.split(countryCode ,'|');
       autocompleteService.getPlacePredictions({
         input: input,
-        componentRestrictions: countryCode ? { country: countryCode } : undefined
+        componentRestrictions: countryCode ? { country: splitCountry } : undefined
       }, function(result, status) {
           
         if (status == google.maps.places.PlacesServiceStatus.OK) {
