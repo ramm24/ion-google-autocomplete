@@ -7,14 +7,15 @@ angular.module('ion-google-autocomplete', [])
         scope: {
             location: '=',//Required
             countryCode: '@',//Optional
-            onSelection: '&'//Optional
+            onSelection: '&',//Optional
+            buttonClass: '@' //Optional
         },
         link: function($scope, element) {
         
             $scope.search = {};
             $scope.search.suggestions = [];
             $scope.search.query = '';
-
+            $scope.buttonClass = $scope.buttonClass || '';
             var template = [
                 '<ion-modal-view>',
                 '<ion-header-bar class="item-input-inset">',
@@ -22,7 +23,7 @@ angular.module('ion-google-autocomplete', [])
                 '<i class="icon ion-search placeholder-icon"></i>',
                 '<input type="search" ng-model="search.query" placeholder="Search">',
                 '</label>',
-                '<button class="ion-autocomplete-cancel button button-clear button-dark ng-binding" ng-click="close()" translate>Done</button>',
+                '<button class="ion-autocomplete-cancel button '+ $scope.buttonClass +' ng-binding" ng-click="close()" translate>Done</button>',
                 '</ion-header-bar>',
                 '<ion-content>',
                 '<ion-list>',
